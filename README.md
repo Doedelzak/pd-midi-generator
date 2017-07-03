@@ -2,7 +2,7 @@
 
 ## MODE D'EMPLOI
 
-GENERATEUR est un programme que j'ai avant tout créé pour le jouer moi-même en improvisation live. Il est un peu "fouilli", car je n'avais pas initialement prévu de le partager. Un mode d'emploi est donc necessaire !
+GENERATEUR est un programme que j'ai avant tout créé pour mon utilisation personnelle. Il est un peu "fouilli", car je n'avais pas initialement prévu de le partager. Un mode d'emploi est donc nécessaire !
 
 Le programme transforme l'ordinateur en improvisateur de musique. Mais ce dernier n'improvise qu'en suivant les directives générales donnees par un musicien. Jouer avec ce programme revient à dire à l'ordinateur qui improvise : "Va plus vite", "module en la mineur", "joue dans les aigus", "joue plus de notes", "maintenant moins de notes", "plus chaotique !", "plus carré rythmiquement", "plus libre rythmiquement", etc. 
 
