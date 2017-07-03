@@ -34,10 +34,12 @@ Ce patch filtre les impulses issues de la division max.
 
 
 #### rythmes_intensites.pd : 
+
      - Slider "POURCENTAGE ALEATOIRE RYTHME" : Lorsque cette valeur est au plus bas, les notes seront toutes jouées au rythme de la pulse générale. Lorsque cette valeur est au plus haut, les notes seront toutes jouées sur des divisions de la pulse (contre-temps). Les intensités sont aléatoires, mais seront globalement plus fortes sur la pulse generale.
 
 
 #### modes2.pd :
+
      - Chaque bouton permet de déterminer le mode avec lequel le programme jouera. Sont disponibles les 7 modes traditionnels, les 7 modes de Messiaen, le "mode" dodécaphonique, et un mode "CUSTOM" avec des listes vides permettant de créer sa propre échelle. Les modes sont constitués de deux listes de chiffres MIDI : à gauche, une liste des hauteurs constituant le mode, et à droite, une liste des notes pôles de ce mode.
      - Le slider "FONDAMENTALE" permet de choisir la note fondamentale sur laquelle sera construite l'échelle du mode. 
 
