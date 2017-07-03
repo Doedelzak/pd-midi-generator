@@ -1,0 +1,31 @@
+#N canvas 720 92 443 371 10;
+#X obj 70 -104 inlet;
+#X obj 54 -133 cnv 15 70 20 empty empty empty 30 12 0 14 -4034 -66577
+0;
+#X text 58 -133 RESOLUTION;
+#X obj 211 -170 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 294 -193 cnv 15 70 20 empty empty empty 30 12 0 14 -257985 -66577
+0;
+#X text 305 -190 FREQUENCE;
+#X obj 100 -55 random 100;
+#X obj 151 3 +;
+#X obj 151 93 outlet;
+#X obj 136 113 cnv 15 70 20 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 141 113 FREQUENCE;
+#X obj 151 65 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 250 -189 ctlin 102;
+#X obj 151 32 moses 120;
+#X obj 303 -135 loadbang;
+#X msg 303 -107 60;
+#X connect 0 0 6 0;
+#X connect 3 0 7 1;
+#X connect 6 0 7 0;
+#X connect 7 0 13 0;
+#X connect 11 0 8 0;
+#X connect 12 0 3 0;
+#X connect 13 1 11 0;
+#X connect 14 0 15 0;
+#X connect 15 0 3 0;
