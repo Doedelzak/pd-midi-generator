@@ -1,7 +1,7 @@
 # GENERATOR
 
 
-This patch transforms the computer into a MIDI improviser. However, it only improvises according to the general directions given by a musician. Playing with this program is like telling the improvising computer in real time: "Go faster," "modulate to A minor," "play in the high range," "play more notes," "now fewer notes," "more chaotic!", "more rhythmically structured," "more rhythmically free," etc.
+This Pure Data patch transforms the computer into a MIDI improviser. However, it only improvises according to the general directions given by a musician. Playing with this program is like telling the improvising computer in real time: "Go faster," "modulate to A minor," "play in the high range," "play more notes," "now fewer notes," "more chaotic!", "more rhythmically structured," "more rhythmically free," etc.
 
 The UI elements are marked by comments on yellow canvases within the patches. They consist of a mouse control (button, switch, slider...) and a "ctlin" object to use an external MIDI controller if available. To match the controls with your MIDI equipment, simply change the argument of the "ctlin" objects to the MIDI CC numbers you use on your controller.
 
