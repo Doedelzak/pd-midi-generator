@@ -1,75 +1,71 @@
-# GENERATEUR
-
-## MODE D'EMPLOI
-
-GENERATEUR est un programme que j'ai avant tout créé pour mon utilisation personnelle. Il est un peu "fouilli", car je n'avais pas initialement prévu de le partager. Un mode d'emploi est donc nécessaire !
-
-Le programme transforme l'ordinateur en improvisateur de musique. Mais ce dernier n'improvise qu'en suivant les directives générales donnees par un musicien. Jouer avec ce programme revient à dire à l'ordinateur qui improvise : "Va plus vite", "module en la mineur", "joue dans les aigus", "joue plus de notes", "maintenant moins de notes", "plus chaotique !", "plus carré rythmiquement", "plus libre rythmiquement", etc. 
-
-Les éléments UI permettant cela sont marqués par des commentaires sur canevas jaune au sein des patchs. Ils sont composés d'un moyen de contrôle à la souris (bouton, interrupteur, slider...) et d'un objet "ctlin" pour utiliser un éventuel contrôleur MIDI externe. Pour faire correspondre les contrôles avec votre matériel MIDI, il suffit de changer l'argument des "ctlin" avec les numéros de MIDI CC que vous utilisez sur votre contrôleur. 
-
-IMPORTANT : 
-Le programme ne génère aucun son. Il ne génère que des données MIDI. Il faut donc paramétrer la sortie MIDI de Pure Data pour l'envoyer à l'appareil MIDI de votre choix.
+# GENERATOR
 
 
-## DESCRIPTION PATCH PAR PATCH
+This patch transforms the computer into a MIDI improviser. However, it only improvises according to the general directions given by a musician. Playing with this program is like telling the improvising computer in real time: "Go faster," "modulate to A minor," "play in the high range," "play more notes," "now fewer notes," "more chaotic!", "more rhythmically structured," "more rhythmically free," etc.
+
+The UI elements are marked by comments on yellow canvases within the patches. They consist of a mouse control (button, switch, slider...) and a "ctlin" object to use an external MIDI controller if available. To match the controls with your MIDI equipment, simply change the argument of the "ctlin" objects to the MIDI CC numbers you use on your controller.
+
+IMPORTANT: 
+This program doesn't generate any sound. It only generates MIDI data. Therefore, you need to set up the MIDI output in Pure Data to send it to the MIDI device of your choice.
 
 
-#### generateur.pd : 
-Patch principal ouvrant le programme.
-
-L'interrupteur "START" est un bouton on/off. 
-
-La variable "CANAL MIDI" permet de sélectionner le canal MIDI de sortie. Si vous n'y touchez pas, le canal MIDI sera le 1 (même si le nombre affiche 0).
+## PATCH DESCRIPTION
 
 
-#### tempo.pd : 
-Ce patch génère deux métronomes. Le premier est le "TEMPO", c'est-à-dire la pulse générale. Le second est la "RESOLUTION", c'est-à-dire la division rythmique maximum de cette pulse initiale. 
+#### generateur.pd:
+Main patch wrapping the others.
 
-Le slider "TEMPO" permet de contrôler la vitesse de la pulse générale. 
+The "START" switch is an on/off button.
 
-Les boutons horizontaux "RESOLUTION" permettent de sélectionner la division maximum de cette pulse. NB : seules des divisions binaires sont disponibles pour le moment.
-
-ATTENTION : sur ce patch, la polarité des sliders est inversée. Il faut baisser les sliders pour accélérer le tempo ou augmenter les divisions.
+The "MIDI CHANNEL" variable allows you to select the MIDI output channel. If you don't change it, the MIDI channel will be 1 (even if the number displays 0).
 
 
-#### freqnotes.pd : 
-Ce patch filtre les impulses issues de la division max. 
+#### tempo.pd:
+This patch contains two metro objects. The "TEMPO" is the general pulse. The "RESOLUTION" is the maximum rhythmic division of this initial pulse.
 
-Le slider "FREQUENCE" permet de définir, à partir des impulsions des métronomes, la densité de notes qui seront effectivement jouées.
+The "TEMPO" slider controls the speed of the general pulse.
+
+The horizontal "RESOLUTION" buttons allow you to select the maximum division of this pulse. Note: only binary divisions are available.
+
+CAUTION: On this patch, the polarity of the sliders is inverted. You need to lower the sliders to speed up the tempo or increase the divisions.
 
 
-#### rythmes_intensites.pd : 
-Slider "POURCENTAGE ALEATOIRE RYTHME" : Lorsque cette valeur est au plus bas, les notes seront toutes jouées au rythme de la pulse générale. Lorsque cette valeur est au plus haut, les notes seront toutes jouées sur des divisions de la pulse (contre-temps). Les intensités sont aléatoires, mais seront globalement plus fortes sur la pulse generale.
+#### freqnotes.pd:
+This patch filters the impulses from the maximum division.
+
+The "FREQUENCE" slider defines, from the metronome impulses, the density of notes that will actually be played.
+
+
+#### rythmes_intensites.pd:
+"POURCENTAGE ALEATOIRE RYTHME" slider: When this value is at its lowest, all notes will be played to the rhythm of the general pulse. When this value is at its highest, all notes will be played on subdivisions of the pulse (offbeat). The intensities are random but will generally be stronger on the general pulse.
 
 
 #### modes2.pd :
-Chaque bouton permet de déterminer le mode avec lequel le programme jouera. Sont disponibles les 7 modes traditionnels, les 7 modes de Messiaen, le "mode" dodécaphonique, et un mode "CUSTOM" avec des listes vides permettant de créer sa propre échelle. Les modes sont constitués de deux listes de chiffres MIDI : à gauche, une liste des hauteurs constituant le mode, et à droite, une liste des notes pôles de ce mode.
+Each button determines the mode with which the program will play. Available are the 7 traditional modes, the 7 modes of Messiaen, the twelve-tone mode, and a "CUSTOM" mode with empty lists to create your own scale. The modes consist of two lists of MIDI numbers: on the left, a list of pitches constituting the mode, and on the right, a list of pole notes of this mode.
 
-Le slider "FONDAMENTALE" permet de choisir la note fondamentale sur laquelle sera construite l'échelle du mode. 
+The "FONDAMENTALE" slider allows you to choose the root note on which the mode's scale will be built.
 
 
 #### notesnew.pd : 
-Ce patch décide des notes qui seront jouées. 
+This patch decides the notes that will be played.
 
-Le slider "TESSITURE" fixe la note la plus grave de l'ambitus.
+The "TESSITURE" slider sets the lowest note of the range.
 
-Le slider "AMBITUS" détermine l'amplitude de l'ambitus, en partant de la note la plus grave définie par TESSITURE".
+The "AMBITUS" slider determines the range's amplitude, starting from the lowest note defined by "RANGE."
 
-Le slider "% ALEATOIRE" détermine le pourcentage d'aléatoire des notes. Concrètement, il détermine si une note doit être choisie au hasard dans l'ambitus, ou déterminee par la moyenne des 4 dernières notes jouées. 
+The "% ALEATOIRE" slider determines the randomness percentage of the notes. Specifically, it determines if a note should be randomly chosen within the range or determined by the average of the last four notes played.
 
 
 #### durees.pd : 
-Ce patch fonctionne de manière équivalente à notesnew, mais décide de la durée pendant laquelle les notes sont tenues.
+This patch works similarly to notesnew but decides the duration for which the notes are held.
 
-Le slider "DUREE MINIMUM" fixe la durée la plus courte possible
+The "DUREE MINIMUM" slider sets the shortest possible duration.
 
-Le slider "DUREE MAXIMUM" fixe la durée la plus longue possible
+The "DUREE MAXIMUM" slider sets the longest possible duration.
 
-Le slider "% ALEATOIRE" détermine le pourcentage d'aléatoire des durées. Concrètement, il détermine si une durée doit être choisie au hasard entre "DUREE MIN" et "DUREE MAX", ou déterminée par la moyenne des 4 dernières durées. 
+The "% ALEATOIRE" slider determines the randomness percentage of the durations. Specifically, it determines if a duration should be randomly chosen between "DUREE MIN" and "DUREE MAX", or determined by the average of the last four durations.
 
-
-freqnotes2.pd, rythme_intensites2.pd, notesnew2.pd, durees2.pd sont des copies et fonctionnent exactement de la même manière que leurs homologues. La seule différence est que la liste envoyée par modes2.pd à notesnew2.pd sera constituée uniquement des notes pôles du mode choisi, alors que notesnew.pd est nourri par l'échelle complète du mode. Cela permet de générer deux "voix" : la première aura un rôle plutôt mélodique, et la seconde un rôle plutôt harmonique. 
+freqnotes2.pd, rythme_intensites2.pd, notesnew2.pd, durees2.pd are copies and work exactly the same as their counterparts. The only difference is that the list sent by modes2.pd to notesnew2.pd will consist only of the pole notes of the chosen mode, while notesnew.pd is fed by the complete scale of the mode. This allows for generating two voices: the first one will have a more melodic role, and the second one a more harmonic role.
 
 
 Have fun!
